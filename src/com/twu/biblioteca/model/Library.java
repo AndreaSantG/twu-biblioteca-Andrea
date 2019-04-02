@@ -34,4 +34,8 @@ public class Library {
         }
         return displayAllBooks;
     }
+
+    public String showMenu() {
+        return "List of books";
+    }
 }
