@@ -88,6 +88,7 @@ public class LibraryTest {
         assertThat(menu, is(resultMenu));
     }
 
+
     @Test
     public void testShouldShowBookListWhenSelectOptionOne(){
         Library library = new Library();
@@ -125,6 +126,20 @@ public class LibraryTest {
         String resultErrorMessage = library.selectOption(optionMenu);
 
         assertThat(errorMessage, is(resultErrorMessage));
+    }
+
+
+
+    @Test
+    public void testShouldExitWhenSelectQuitOption(){
+        Library library = new Library();
+        int optionMenu = 0;
+        String exitMessage = "Exit...";
+
+        String resultErrorMessage = library.selectOption(optionMenu);
+
+        assertThat(exitMessage, is(resultErrorMessage));
+
     }
 
 

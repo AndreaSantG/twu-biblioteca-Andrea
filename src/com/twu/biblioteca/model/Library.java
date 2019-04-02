@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,12 +41,18 @@ public class Library {
     }
 
     public String selectOption(int optionMenu) {
+        String selectedOption = "";
         switch (optionMenu){
             case 1:
-                return displayBookList();
+                selectedOption = displayBookList();
+                break;
+            case 0:
+                selectedOption = "Exit...";
+                System.exit(0);
+                break;
             default:
-                return "Please select a valid option!";
+                selectedOption = "Please select a valid option!";
         }
-
+        return selectedOption;
     }
 }
