@@ -29,7 +29,7 @@ public class Library {
             if(countBook == bookList.size() -1 ){
                 displayAllBooks += bookList.get(countBook).getTitle();
             }else {
-                displayAllBooks += bookList.get(countBook).getTitle() + "\n ";
+                displayAllBooks += bookList.get(countBook).getTitle() + "\n";
             }
         }
         return displayAllBooks;

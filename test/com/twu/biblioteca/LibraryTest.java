@@ -39,6 +39,6 @@ public class LibraryTest {
 
         String resultBookList = library.displayBookList();
 
-        assertThat(resultBookList, is(titleBook1 +"\n "+titleBook2+"\n "+titleBook3+"\n "+titleBook4));
+        assertThat(resultBookList, is(titleBook1 +"\n"+titleBook2+"\n"+titleBook3+"\n"+titleBook4));
     }
 }
