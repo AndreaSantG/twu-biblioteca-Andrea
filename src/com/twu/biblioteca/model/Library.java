@@ -36,6 +36,14 @@ public class Library {
     }
 
     public String showMenu() {
-        return "List of books";
+        return "(1) List of books";
+    }
+
+    public String selectOption(int optionMenu) {
+        switch (optionMenu){
+            case 1: return displayBookList();
+        }
+        return "";
+
     }
 }
