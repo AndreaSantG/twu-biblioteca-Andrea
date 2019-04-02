@@ -41,9 +41,11 @@ public class Library {
 
     public String selectOption(int optionMenu) {
         switch (optionMenu){
-            case 1: return displayBookList();
+            case 1:
+                return displayBookList();
+            default:
+                return "Please select a valid option!";
         }
-        return "";
 
     }
 }

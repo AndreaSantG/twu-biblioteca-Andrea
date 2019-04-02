@@ -116,4 +116,16 @@ public class LibraryTest {
     }
 
 
+    @Test
+    public void testShouldShowErrorMessageWhenSelectInvalidOption(){
+        Library library = new Library();
+        int optionMenu = -6;
+        String errorMessage = "Please select a valid option!";
+
+        String resultErrorMessage = library.selectOption(optionMenu);
+
+        assertThat(errorMessage, is(resultErrorMessage));
+    }
+
+
 }
