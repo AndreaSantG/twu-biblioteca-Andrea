@@ -24,21 +24,58 @@ public class LibraryTest {
     }
 
 
-    @Test
+    /*@Test
     public void testShouldListTitleBooksAfterWelcomeMessage(){
         String titleBook1 = "El amor en tiempos de Colera";
+        String authorBook1 = "Gabriel Garcia Marquez";
+        int yearPublishedBook1 = 1985;
         String titleBook2 = "Los primeros tres minutos del universo";
-        String titleBook3 = "Interestelar";
+        String authorBook2 = "Steven Weinberg";
+        int yearPublishedBook2 = 1977;
+        String titleBook3 = "The Science of Interstellar";
+        String authorBook3 = "Kip Thorne";
+        int yearPublishedBook3 = 2014;
         String titleBook4 = "The 4 hour workweek";
-        Book book1 = new Book(titleBook1);
-        Book book2 = new Book(titleBook2);
-        Book book3 = new Book(titleBook3);
-        Book book4 = new Book(titleBook4);
+        String authorBook4 = "Tim Ferriss";
+        int yearPublishedBook4 = 2007;
+        Book book1 = new Book(titleBook1, authorBook1, yearPublishedBook1);
+        Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2);
+        Book book3 = new Book(titleBook3, authorBook3, yearPublishedBook3);
+        Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4);
         List<Book> bookList = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
         Library library = new Library();
 
         String resultBookList = library.displayBookList();
 
-        assertThat(resultBookList, is(titleBook1 +"\n"+titleBook2+"\n"+titleBook3+"\n"+titleBook4));
+        assertThat(resultBookList, is(bookList.get(0).getTitle() +"\n"+bookList.get(1).getTitle()+"\n"+bookList.get(2).getTitle()+"\n"+bookList.get(3).getTitle()));
+    }*/
+
+
+    @Test
+    public void testShouldListTitleAuthorAndYearPublishedAfterWelcomeMessage(){
+        String titleBook1 = "El amor en tiempos de Colera";
+        String authorBook1 = "Gabriel Garcia Marquez";
+        int yearPublishedBook1 = 1985;
+        String titleBook2 = "Los primeros tres minutos del universo";
+        String authorBook2 = "Steven Weinberg";
+        int yearPublishedBook2 = 1977;
+        String titleBook3 = "The Science of Interstellar";
+        String authorBook3 = "Kip Thorne";
+        int yearPublishedBook3 = 2014;
+        String titleBook4 = "The 4 hour workweek";
+        String authorBook4 = "Tim Ferriss";
+        int yearPublishedBook4 = 2007;
+        Book book1 = new Book(titleBook1, authorBook1, yearPublishedBook1);
+        Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2);
+        Book book3 = new Book(titleBook3, authorBook3, yearPublishedBook3);
+        Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4);
+        List<Book> bookList = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
+        Library library = new Library();
+
+        String resultBookList = library.displayBookList();
+
+        assertThat(resultBookList, is(bookList.get(0).getTitle()+"|" +bookList.get(0).getAuthor()+"|"+bookList.get(0).getYearPublished()+"\n"+bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n"+bookList.get(2).getTitle()+"|" +bookList.get(2).getAuthor()+"|"+bookList.get(2).getYearPublished()+"\n"+bookList.get(3).getTitle()+"|" +bookList.get(3).getAuthor()+"|"+bookList.get(3).getYearPublished()));
     }
+
+
 }
