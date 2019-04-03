@@ -293,13 +293,25 @@ public class LibraryTest {
     }
 
 
-    @Test
+    /*@Test
     public void testShouldCallCheckoutOptionWhenSelectOptionTwo(){
         Library library = new Library();
         int optionMenu = 2;
         String expectedMessageOptionCheckoutBook = "Thank you! Enjoy the book";
 
         String resultMessageCheckedoutBook = library.selectOption(optionMenu);
+
+        assertThat(expectedMessageOptionCheckoutBook, is(resultMessageCheckedoutBook));
+    }*/
+
+
+    @Test
+    public void testShouldShowErrorMessageWhenABookIsNotInList(){
+        Library library = new Library();
+        int codBook = 68;
+        String expectedMessageOptionCheckoutBook = "That is not a valid book to check out";
+
+        String resultMessageCheckedoutBook = library.checkoutBook(codBook);
 
         assertThat(expectedMessageOptionCheckoutBook, is(resultMessageCheckedoutBook));
     }

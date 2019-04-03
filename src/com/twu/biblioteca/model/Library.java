@@ -89,7 +89,7 @@ public class Library {
                 }
             }
         }
-        return "";
+        return "That is not a valid book to check out";//Caso aidicional
 
     }
 
