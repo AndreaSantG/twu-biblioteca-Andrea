@@ -244,5 +244,18 @@ public class LibraryTest {
     }
 
 
+    @Test
+    public void testShouldReturnABook(){
+        Library library = new Library();
+        int codBook = library.getBookList().get(0).getCod();
+        library.getBookList().get(0).setStatus(1);
+        int expectedStatusReturnedBook = 0;
+
+        Book book = library.returnBook(codBook);
+
+        assertThat(expectedStatusReturnedBook, is(book.getStatus()));
+    }
+
+
 
 }

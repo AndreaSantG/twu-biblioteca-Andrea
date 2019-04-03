@@ -81,4 +81,13 @@ public class Library {
     }
 
 
+    public Book returnBook(int codBook) {
+        for(Book book : bookList){
+            if(book.getCod() == codBook){
+                book.setStatus(0);
+                    return book;
+            }
+        }
+        return null;
+    }
 }
