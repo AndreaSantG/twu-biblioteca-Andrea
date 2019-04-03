@@ -4,6 +4,7 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
+import java.util.Scanner;
 
 public class Library {
 
@@ -45,14 +46,26 @@ public class Library {
     }
 
     public String showMenu() {
-        return "(1) List of books";
+        return "(1) List of books\n(2) Checkout a book\n(3) Return a book\n(0) Quit";
     }
 
     public String selectOption(int optionMenu) {
         String selectedOption = "";
+        Scanner reader = new Scanner ( System.in );
+        int codeBook;
         switch (optionMenu){
             case 1:
                 selectedOption = displayBookList();
+                break;
+            case 2:
+                System.out.println("Please enter the code of book you want to check out");
+                codeBook = Integer.valueOf(reader.next());
+                selectedOption = checkoutBook(codeBook);
+                break;
+            case 3:
+                System.out.println("Please enter the code of book you want to return");
+                codeBook = Integer.valueOf(reader.next());
+                selectedOption = returnBook(codeBook);
                 break;
             case 0:
                 selectedOption = "Exit...";
@@ -88,6 +101,6 @@ public class Library {
                 return "Thank you for returning the book";
             }
         }
-        return "";
+        return "That is not a valid book to return";
     }
 }

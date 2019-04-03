@@ -32,7 +32,6 @@ public class LibraryTest {
         int resultSizeBookList = library.getBookList().size();
 
         assertThat(sizeBookList, is(resultSizeBookList));
-
     }
 
 
@@ -98,10 +97,21 @@ public class LibraryTest {
     }
 
 
-    @Test
+    /*@Test
     public void testShouldDisplayMenuAfterShowWelcomeMessage(){
         Library library = new Library();
         String menu = "(1) List of books";
+
+        String resultMenu = library.showMenu();
+
+        assertThat(menu, is(resultMenu));
+    }*/
+
+
+    @Test
+    public void testShouldDisplayMenuAfterShowWelcomeMessage(){
+        Library library = new Library();
+        String menu = "(1) List of books\n(2) Checkout a book\n(3) Return a book\n(0) Quit";
 
         String resultMenu = library.showMenu();
 
@@ -267,6 +277,31 @@ public class LibraryTest {
         String expectedMessageReturnBookSuccessfully = library.returnBook(codBook);
 
         assertThat(expectedMessageReturnBookSuccessfully, is(messageReturnBookSuccessfully));
+    }
+
+
+    @Test
+    public void testShouldShowAErrorMessageWhenReturnAInvalidBook(){
+        Library library = new Library();
+        int codBook = library.getBookList().get(0).getCod();
+        library.getBookList().remove(0);
+        String messageReturnBookSuccessfully = "That is not a valid book to return";
+
+        String expectedMessageReturnBookSuccessfully = library.returnBook(codBook);
+
+        assertThat(expectedMessageReturnBookSuccessfully, is(messageReturnBookSuccessfully));
+    }
+
+
+    @Test
+    public void testShouldCallCheckoutOptionWhenSelectOptionTwo(){
+        Library library = new Library();
+        int optionMenu = 2;
+        String expectedMessageOptionCheckoutBook = "Thank you! Enjoy the book";
+
+        String resultMessageCheckedoutBook = library.selectOption(optionMenu);
+
+        assertThat(expectedMessageOptionCheckoutBook, is(resultMessageCheckedoutBook));
     }
 
 
