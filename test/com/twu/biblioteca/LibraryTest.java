@@ -244,16 +244,29 @@ public class LibraryTest {
     }
 
 
-    @Test
+    /*@Test
     public void testShouldReturnABook(){
         Library library = new Library();
-        int codBook = library.getBookList().get(0).getCod();
         library.getBookList().get(0).setStatus(1);
+        int codBook = library.getBookList().get(0).getCod();
         int expectedStatusReturnedBook = 0;
 
         Book book = library.returnBook(codBook);
 
         assertThat(expectedStatusReturnedBook, is(book.getStatus()));
+    }*/
+
+
+    @Test
+    public void testShouldShowAMessageWhenReturnABook(){
+        Library library = new Library();
+        library.getBookList().get(0).setStatus(1);
+        int codBook = library.getBookList().get(0).getCod();
+        String messageReturnBookSuccessfully = "Thank you for returning the book";
+
+        String expectedMessageReturnBookSuccessfully = library.returnBook(codBook);
+
+        assertThat(expectedMessageReturnBookSuccessfully, is(messageReturnBookSuccessfully));
     }
 
 
