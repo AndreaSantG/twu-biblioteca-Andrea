@@ -231,5 +231,18 @@ public class LibraryTest {
     }
 
 
+    @Test
+    public void testShouldShowMessageWhenTryCheckOutUnavailableBook(){
+        Library library = new Library();
+        int codBook = library.getBookList().get(0).getCod();
+        library.getBookList().get(0).setStatus(1);
+        String messageCheckedoutUnavailableBook = "Sorry, that book is not available";
+
+        String resultMessageCheckedoutUnavailableBook = library.checkoutBook(codBook);
+
+        assertThat(messageCheckedoutUnavailableBook, is(resultMessageCheckedoutUnavailableBook));
+    }
+
+
 
 }

@@ -71,6 +71,9 @@ public class Library {
                     book.setStatus(1);
                     return "Thank you! Enjoy the book";
                 }
+                else {
+                    return "Sorry, that book is not available";
+                }
             }
         }
         return "";
