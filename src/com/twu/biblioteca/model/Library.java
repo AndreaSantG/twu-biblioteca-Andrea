@@ -64,16 +64,16 @@ public class Library {
         return selectedOption;
     }
 
-    public Book checkoutBook(int codBook) {
+    public String checkoutBook(int codBook) {
         for(Book book : bookList){
             if(book.getCod() == codBook){
                 if(book.getStatus() == 0){
                     book.setStatus(1);
-                    return book;
+                    return "Thank you! Enjoy the book";
                 }
             }
         }
-        return null;
+        return "";
 
     }
 

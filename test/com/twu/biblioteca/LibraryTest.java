@@ -170,7 +170,7 @@ public class LibraryTest {
     }*/
 
 
-    @Test
+    /*@Test
     public void testShouldCheckOutAvailableBook(){
         Library library = new Library();
         int codBook = 30;
@@ -179,7 +179,7 @@ public class LibraryTest {
         Book book = library.checkoutBook(codBook);
 
         assertThat(statusBook, is(book.getStatus()));
-    }
+    }*/
 
 
     @Test
@@ -216,7 +216,18 @@ public class LibraryTest {
         String resultBookList = library.displayBookList();
 
         assertThat(bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n"+bookList.get(3).getTitle()+"|" +bookList.get(3).getAuthor()+"|"+bookList.get(3).getYearPublished(), is(resultBookList));
+    }
 
+
+    @Test
+    public void testShouldShowMessageWhenCheckOutAvailableBook(){
+        Library library = new Library();
+        int codBook = 30;
+        String messageCheckedoutBook = "Thank you! Enjoy the book";
+
+        String resultMessageCheckedoutBook = library.checkoutBook(codBook);
+
+        assertThat(messageCheckedoutBook, is(resultMessageCheckedoutBook));
     }
 
 
