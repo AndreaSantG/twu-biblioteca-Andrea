@@ -1,0 +1,1 @@
+select name from member where id = (select member_id from checkout_item where book_id = (select id from book where title = "The Hobbit"));
