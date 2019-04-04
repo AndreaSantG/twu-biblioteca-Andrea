@@ -5,14 +5,14 @@ public class Book {
     private String author;
     private int yearPublished;
     private int status;
-    private int cod;
+    private int code;
 
-    public Book(String title, String author, int yearPublished, int status, int cod) {
+    public Book(String title, String author, int yearPublished, int status, int code) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
         this.status = status;
-        this.cod = cod;
+        this.code = code;
     }
 
     public String getTitle() { return this.title; }
@@ -23,8 +23,7 @@ public class Book {
         return yearPublished;
     }
     public int getStatus() { return this.status; }
-    public int getCod() { return this.cod; }
-
+    public int getCode() { return this.code; }
     public void setStatus(int status) {
         this.status = status;
     }

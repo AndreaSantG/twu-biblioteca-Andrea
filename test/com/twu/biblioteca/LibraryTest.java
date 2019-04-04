@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ import static org.hamcrest.core.Is.is;
 
 public class LibraryTest {
 
+
     @Test
-    public void testShouldShowWelcomeMessageWhenUserOpenApp(){
+    public void whenOpenAppThenShouldShowWelcomeMessage(){
         Library library = new Library();
         String expectedWelcomeMessage = "Welcome to Biblioteca. Your one stop-shop for great book titles in Bangalore!";
 
@@ -25,7 +27,7 @@ public class LibraryTest {
 
 
     @Test
-    public void testShouldCreateBookListWhenCreateLibraryObject(){
+    public void whenOpenAppThenCreateABookList(){
         Library library = new Library();
         int sizeBookList = 4;
 
@@ -35,35 +37,8 @@ public class LibraryTest {
     }
 
 
-    /*@Test
-    public void testShouldListTitleBooksAfterWelcomeMessage(){
-        String titleBook1 = "El amor en tiempos de Colera";
-        String authorBook1 = "Gabriel Garcia Marquez";
-        int yearPublishedBook1 = 1985;
-        String titleBook2 = "Los primeros tres minutos del universo";
-        String authorBook2 = "Steven Weinberg";
-        int yearPublishedBook2 = 1977;
-        String titleBook3 = "The Science of Interstellar";
-        String authorBook3 = "Kip Thorne";
-        int yearPublishedBook3 = 2014;
-        String titleBook4 = "The 4 hour workweek";
-        String authorBook4 = "Tim Ferriss";
-        int yearPublishedBook4 = 2007;
-        Book book1 = new Book(titleBook1, authorBook1, yearPublishedBook1);
-        Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2);
-        Book book3 = new Book(titleBook3, authorBook3, yearPublishedBook3);
-        Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4);
-        List<Book> bookList = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
-        Library library = new Library();
-
-        String resultBookList = library.displayBookList();
-
-        assertThat(resultBookList, is(bookList.get(0).getTitle() +"\n"+bookList.get(1).getTitle()+"\n"+bookList.get(2).getTitle()+"\n"+bookList.get(3).getTitle()));
-    }*/
-
-
     @Test
-    public void testShouldListTitleAuthorAndYearPublishedAfterWelcomeMessage(){
+    public void whenOpenAppThenShouldListTitleAuthorAndYearPublishedA(){
         String titleBook1 = "El amor en tiempos de Colera";
         String authorBook1 = "Gabriel Garcia Marquez";
         int yearPublishedBook1 = 1985;
@@ -93,144 +68,12 @@ public class LibraryTest {
 
         String resultBookList = library.displayBookList();
 
-        assertThat(bookList.get(0).getTitle()+"|" +bookList.get(0).getAuthor()+"|"+bookList.get(0).getYearPublished()+"\n"+bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n"+bookList.get(2).getTitle()+"|" +bookList.get(2).getAuthor()+"|"+bookList.get(2).getYearPublished()+"\n"+bookList.get(3).getTitle()+"|" +bookList.get(3).getAuthor()+"|"+bookList.get(3).getYearPublished(), is(resultBookList));
-    }
-
-
-    /*@Test
-    public void testShouldDisplayMenuAfterShowWelcomeMessage(){
-        Library library = new Library();
-        String menu = "(1) List of books";
-
-        String resultMenu = library.showMenu();
-
-        assertThat(menu, is(resultMenu));
-    }*/
-
-
-    @Test
-    public void testShouldDisplayMenuAfterShowWelcomeMessage(){
-        Library library = new Library();
-        String menu = "(1) List of books\n(2) Checkout a book\n(3) Return a book\n(0) Quit";
-
-        String resultMenu = library.showMenu();
-
-        assertThat(menu, is(resultMenu));
+        assertThat(bookList.get(0).getTitle()+"|" +bookList.get(0).getAuthor()+"|"+bookList.get(0).getYearPublished()+"\n"+bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n"+bookList.get(2).getTitle()+"|" +bookList.get(2).getAuthor()+"|"+bookList.get(2).getYearPublished()+"\n"+bookList.get(3).getTitle()+"|" +bookList.get(3).getAuthor()+"|"+bookList.get(3).getYearPublished()+"\n", is(resultBookList));
     }
 
 
     @Test
-    public void testShouldShowBookListWhenSelectOptionOne(){
-        Library library = new Library();
-        int optionMenu = 1;
-        String titleBook1 = "El amor en tiempos de Colera";
-        String authorBook1 = "Gabriel Garcia Marquez";
-        int yearPublishedBook1 = 1985;
-        int statusBook1 = 1;
-        int idBook1 = 30;
-        String titleBook2 = "Los primeros tres minutos del universo";
-        String authorBook2 = "Steven Weinberg";
-        int yearPublishedBook2 = 1977;
-        int statusBook2 = 0;
-        int idBook2 = 40;
-        String titleBook3 = "The Science of Interstellar";
-        String authorBook3 = "Kip Thorne";
-        int yearPublishedBook3 = 2014;
-        int statusBook3 = 1;
-        int idBook3 = 50;
-        String titleBook4 = "The 4 hour workweek";
-        String authorBook4 = "Tim Ferriss";
-        int yearPublishedBook4 = 2007;
-        int statusBook4 = 0;
-        int idBook4 = 60;
-        Book book1 = new Book(titleBook1, authorBook1, yearPublishedBook1, statusBook1, idBook1);
-        Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2, statusBook2, idBook2);
-        Book book3 = new Book(titleBook3, authorBook3, yearPublishedBook3, statusBook3, idBook3);
-        Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4, statusBook4, idBook4);
-        List<Book> bookList = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
-
-        String resultBookList = library.selectOption(optionMenu);
-
-        assertThat(bookList.get(0).getTitle()+"|" +bookList.get(0).getAuthor()+"|"+bookList.get(0).getYearPublished()+"\n"+bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n"+bookList.get(2).getTitle()+"|" +bookList.get(2).getAuthor()+"|"+bookList.get(2).getYearPublished()+"\n"+bookList.get(3).getTitle()+"|" +bookList.get(3).getAuthor()+"|"+bookList.get(3).getYearPublished(), is(resultBookList));
-    }
-
-
-    @Test
-    public void testShouldShowErrorMessageWhenSelectInvalidOption(){
-        Library library = new Library();
-        int optionMenu = -6;
-        String errorMessage = "Please select a valid option!";
-
-        String resultErrorMessage = library.selectOption(optionMenu);
-
-        assertThat(errorMessage, is(resultErrorMessage));
-    }
-
-
-
-    /*@Test
-    public void testShouldExitWhenSelectQuitOption(){
-        Library library = new Library();
-        int optionMenu = 0;
-        String exitMessage = "Exit...";
-
-        String resultErrorMessage = library.selectOption(optionMenu);
-
-        assertThat(exitMessage, is(resultErrorMessage));
-    }*/
-
-
-    /*@Test
-    public void testShouldCheckOutAvailableBook(){
-        Library library = new Library();
-        int codBook = 30;
-        int statusBook = 1;
-
-        Book book = library.checkoutBook(codBook);
-
-        assertThat(statusBook, is(book.getStatus()));
-    }*/
-
-
-    @Test
-    public void testShouldListOnlyAvailableBook(){
-        String titleBook1 = "El amor en tiempos de Colera";
-        String authorBook1 = "Gabriel Garcia Marquez";
-        int yearPublishedBook1 = 1985;
-        int statusBook1 = 1;
-        int idBook1 = 30;
-        String titleBook2 = "Los primeros tres minutos del universo";
-        String authorBook2 = "Steven Weinberg";
-        int yearPublishedBook2 = 1977;
-        int statusBook2 = 0;
-        int idBook2 = 40;
-        String titleBook3 = "The Science of Interstellar";
-        String authorBook3 = "Kip Thorne";
-        int yearPublishedBook3 = 2014;
-        int statusBook3 = 1;
-        int idBook3 = 50;
-        String titleBook4 = "The 4 hour workweek";
-        String authorBook4 = "Tim Ferriss";
-        int yearPublishedBook4 = 2007;
-        int statusBook4 = 0;
-        int idBook4 = 60;
-        Book book1 = new Book(titleBook1, authorBook1, yearPublishedBook1, statusBook1, idBook1);
-        Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2, statusBook2, idBook2);
-        Book book3 = new Book(titleBook3, authorBook3, yearPublishedBook3, statusBook3, idBook3);
-        Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4, statusBook4, idBook4);
-        List<Book> bookList = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
-        Library library = new Library();
-        library.getBookList().get(0).setStatus(1);
-        library.getBookList().get(2).setStatus(1);
-
-        String resultBookList = library.displayBookList();
-
-        assertThat(bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n"+bookList.get(3).getTitle()+"|" +bookList.get(3).getAuthor()+"|"+bookList.get(3).getYearPublished(), is(resultBookList));
-    }
-
-
-    @Test
-    public void testShouldShowMessageWhenCheckOutAvailableBook(){
+    public void givenAVailableBookWhenCheckoutTheBookThenShowUnsuccessfulMessage(){
         Library library = new Library();
         int codBook = 30;
         String messageCheckedoutBook = "Thank you! Enjoy the book";
@@ -242,71 +85,70 @@ public class LibraryTest {
 
 
     @Test
-    public void testShouldShowMessageWhenTryCheckOutUnavailableBook(){
+    public void givenThereAreCheckedoutBooksWhenDisplayBooksThenShouldListOnlyAvailableBook(){
+        String titleBook2 = "Los primeros tres minutos del universo";
+        String authorBook2 = "Steven Weinberg";
+        int yearPublishedBook2 = 1977;
+        int statusBook2 = 1;
+        int idBook2 = 40;
+        String titleBook4 = "The 4 hour workweek";
+        String authorBook4 = "Tim Ferriss";
+        int yearPublishedBook4 = 2007;
+        int statusBook4 = 1;
+        int idBook4 = 60;
+        Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2, statusBook2, idBook2);
+        Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4, statusBook4, idBook4);
+        List<Book> bookList = new ArrayList<>(Arrays.asList(book2, book4));
         Library library = new Library();
-        int codBook = library.getBookList().get(0).getCod();
-        library.getBookList().get(0).setStatus(1);
+        library.getBookList().get(30).setStatus(1);
+        library.getBookList().get(50).setStatus(1);
+
+        String resultBookList = library.displayBookList();
+
+        assertThat(bookList.get(0).getTitle()+"|" +bookList.get(0).getAuthor()+"|"+bookList.get(0).getYearPublished()+"\n"+bookList.get(1).getTitle()+"|" +bookList.get(1).getAuthor()+"|"+bookList.get(1).getYearPublished()+"\n", is(resultBookList));
+    }
+
+
+    @Test
+    public void givenAnUnavailableBookThenCheckoutTheBookAndShowUnsuccessfulMessage(){
+        Library library = new Library();
+        int codeBook = library.getBookList().get(30).getCode();
+        library.getBookList().get(30).setStatus(1);
         String messageCheckedoutUnavailableBook = "Sorry, that book is not available";
 
-        String resultMessageCheckedoutUnavailableBook = library.checkoutBook(codBook);
+        String resultMessageCheckedoutUnavailableBook = library.checkoutBook(codeBook);
 
         assertThat(messageCheckedoutUnavailableBook, is(resultMessageCheckedoutUnavailableBook));
     }
 
 
-    /*@Test
-    public void testShouldReturnABook(){
-        Library library = new Library();
-        library.getBookList().get(0).setStatus(1);
-        int codBook = library.getBookList().get(0).getCod();
-        int expectedStatusReturnedBook = 0;
-
-        Book book = library.returnBook(codBook);
-
-        assertThat(expectedStatusReturnedBook, is(book.getStatus()));
-    }*/
-
-
     @Test
-    public void testShouldShowAMessageWhenReturnABook(){
+    public void givenAValidBookWhenReturnTheBookThenShowSuccessfulMessage(){
         Library library = new Library();
-        library.getBookList().get(0).setStatus(1);
-        int codBook = library.getBookList().get(0).getCod();
+        library.getBookList().get(30).setStatus(1);
+        int codeBook = library.getBookList().get(30).getCode();
         String messageReturnBookSuccessfully = "Thank you for returning the book";
 
-        String expectedMessageReturnBookSuccessfully = library.returnBook(codBook);
+        String expectedMessageReturnBookSuccessfully = library.returnBook(codeBook);
 
         assertThat(expectedMessageReturnBookSuccessfully, is(messageReturnBookSuccessfully));
     }
 
 
     @Test
-    public void testShouldShowAErrorMessageWhenReturnAInvalidBook(){
+    public void givenAnInvalidBookWhenReturnTheBookThenShowSuccessfulMessage(){
         Library library = new Library();
-        int codBook = library.getBookList().get(0).getCod();
-        library.getBookList().remove(0);
+        int codeBookForReturning = 90;
         String messageReturnBookSuccessfully = "That is not a valid book to return";
 
-        String expectedMessageReturnBookSuccessfully = library.returnBook(codBook);
+        String expectedMessageReturnBookSuccessfully = library.returnBook(codeBookForReturning);
 
         assertThat(expectedMessageReturnBookSuccessfully, is(messageReturnBookSuccessfully));
     }
 
 
-    /*@Test
-    public void testShouldCallCheckoutOptionWhenSelectOptionTwo(){
-        Library library = new Library();
-        int optionMenu = 2;
-        String expectedMessageOptionCheckoutBook = "Thank you! Enjoy the book";
-
-        String resultMessageCheckedoutBook = library.selectOption(optionMenu);
-
-        assertThat(expectedMessageOptionCheckoutBook, is(resultMessageCheckedoutBook));
-    }*/
-
-
     @Test
-    public void testShouldShowErrorMessageWhenABookIsNotInList(){
+    public void givenBookDoNotBelongToLibraryWhenReturnTheBookThenShowSuccessfulMessage(){
         Library library = new Library();
         int codBook = 68;
         String expectedMessageOptionCheckoutBook = "That is not a valid book to check out";
