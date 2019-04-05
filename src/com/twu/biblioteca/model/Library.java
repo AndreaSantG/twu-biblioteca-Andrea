@@ -7,6 +7,7 @@ public class Library {
     private Map<Integer, Book> bookHashMap;
     private Map<Integer, Movie> movieHashMap;
     private List<User>  userList;
+    private Map<Integer, User> ckeckedoutBookList;
 
     public Library(){
         bookHashMap = new LinkedHashMap<>();
@@ -30,11 +31,12 @@ public class Library {
         movieHashMap.put(600, movie4);
 
         userList = new ArrayList<>();
-        User user1 = new User("use-1234","pass1");
-        User user2 = new User("use-5678","pass2");
+        User user1 = new User("000-1234","pass1","Carlos","carlos@gmail.com","33434343");
+        User user2 = new User("000-5678","pass2","Andres","andres@gmail.com","090909090");
         userList.add(user1);
         userList.add(user2);
 
+        ckeckedoutBookList = new LinkedHashMap<>();
     }
 
     public Map<Integer, Book> getBookList() {
@@ -43,6 +45,10 @@ public class Library {
 
     public Map<Integer, Movie> getMovieList() {
         return this.movieHashMap;
+    }
+
+    public List<User> getUserList() {
+        return this.userList;
     }
 
     public String showWelcomeMessage() {
@@ -65,10 +71,11 @@ public class Library {
     }
 
 
-    public String checkoutBook(int codeBook) {
+    public String checkoutBook(int codeBook, User user) {
         for(Book book : bookHashMap.values()){
             if(book.getCode() == codeBook && book.getStatus() == 0){
                 book.setStatus(1);
+                this.ckeckedoutBookList.put(book.getCode(), user);
                 return "Thank you! Enjoy the book";
             } else if(book.getCode() == codeBook && book.getStatus() != 0){
                 return "Sorry, that book is not available"; }
@@ -118,7 +125,7 @@ public class Library {
         return "That is not a valid movie to check out";
     }
 
-    public List<User> getUserList() {
-        return this.userList;
+    public String queryWhoHasTheBook(int codeBook) {
+        return ckeckedoutBookList.get(codeBook).getUsername();
     }
 }

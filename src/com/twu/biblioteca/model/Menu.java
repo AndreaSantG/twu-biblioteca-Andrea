@@ -2,18 +2,30 @@ package com.twu.biblioteca.model;
 
 public class Menu {
 
-    private String menuOptions;
+    private String menuOne;
+    private String menuTwo;
+    private String menuThree;
+    private String menuFour;
+    private String menuFive;
+    private String menuSix;
+    private String menuZero;
 
     public Menu(){
-        this.menuOptions = "(1) List books\n(2) Checkout a book\n(3) Return a book\n(4) List movies\n(0) Quit";
+        this.menuOne = "(1) List books\n";
+        this.menuTwo = "(2) Checkout a book\n";
+        this.menuThree = "(3) Return a book\n";
+        this.menuFour = "(4) List movies\n";
+        this.menuFive = "(5) Checkout a movie\n";
+        this.menuSix = "(6) View my information\n";
+        this.menuZero = "(0) Quit\n";
     }
 
     public String showMenu() {
-        return this.menuOptions;
+        return this.menuOne+this.menuTwo+this.menuThree+this.menuFour+this.menuFive+this.menuSix+this.menuZero;
     }
 
 
-    public String selectOption(int optionMenu, Library library) {
+    public String selectOption(int optionMenu, Library library, User user) {
         String selectedOption;
         int codeBook;
         int codeMovie;
@@ -25,7 +37,7 @@ public class Menu {
                 selectedOption = "Checkout a Book";
                 Utilitarian.print("Please enter the code of book you want to check out");
                 codeBook = Integer.valueOf(Utilitarian.read());
-                selectedOption = library.checkoutBook(codeBook);
+                selectedOption = library.checkoutBook(codeBook, user);
                 break;
             case 3:
                 Utilitarian.print("Please enter the code of book you want to return");
@@ -38,6 +50,10 @@ public class Menu {
                 Utilitarian.print("Please enter the code of movie you want to check out");
                 codeMovie = Integer.valueOf(Utilitarian.read());
                 selectedOption = library.checkoutMovie(codeMovie);
+                break;
+            case 6:
+                selectedOption = user.showContactInformation();
+                break;
             case 0:
                 selectedOption = "Exit...";
                 System.exit(0);

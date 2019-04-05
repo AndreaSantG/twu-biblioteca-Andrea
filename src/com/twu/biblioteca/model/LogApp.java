@@ -4,12 +4,12 @@ import java.util.List;
 
 public class LogApp {
 
-    public String login(List<User> userList, String username, String password) {
+    public User login(List<User> userList, String username, String password) {
         for (User user: userList) {
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-                return "Success";
+                return user;
             }
         }
-        return "Your username or password is incorrect";
+        return null;
     }
 }

@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,10 +15,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class LibraryTest {
+    Library library;
+
+    @Before
+    public void setUp(){
+        library = new Library();
+    }
 
     @Test
     public void whenOpenAppThenShouldShowWelcomeMessage(){
-        Library library = new Library();
         String expectedWelcomeMessage = "Welcome to Biblioteca. Your one stop-shop for great book titles in Bangalore!";
 
         String resultWelcomeMessage = library.showWelcomeMessage();
@@ -27,7 +34,6 @@ public class LibraryTest {
 
     @Test
     public void whenOpenAppThenCreateABookList(){
-        Library library = new Library();
         int sizeBookList = 4;
 
         int resultSizeBookList = library.getBookList().size();
@@ -63,7 +69,6 @@ public class LibraryTest {
         Book book3 = new Book(titleBook3, authorBook3, yearPublishedBook3, statusBook3, idBook3);
         Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4, statusBook4, idBook4);
         List<Book> bookList = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
-        Library library = new Library();
 
         String resultBookList = library.displayBookList();
 
@@ -73,11 +78,11 @@ public class LibraryTest {
 
     @Test
     public void givenAVailableBookWhenCheckoutTheBookThenShowSuccessfulMessage(){
-        Library library = new Library();
         int codBook = 30;
         String messageCheckedoutBook = "Thank you! Enjoy the book";
+        User user = library.getUserList().get(0);
 
-        String resultMessageCheckedoutBook = library.checkoutBook(codBook);
+        String resultMessageCheckedoutBook = library.checkoutBook(codBook, user);
 
         assertThat(messageCheckedoutBook, is(resultMessageCheckedoutBook));
     }
@@ -98,7 +103,6 @@ public class LibraryTest {
         Book book2 = new Book(titleBook2, authorBook2, yearPublishedBook2, statusBook2, idBook2);
         Book book4 = new Book(titleBook4, authorBook4, yearPublishedBook4, statusBook4, idBook4);
         List<Book> bookList = new ArrayList<>(Arrays.asList(book2, book4));
-        Library library = new Library();
         library.getBookList().get(30).setStatus(1);
         library.getBookList().get(50).setStatus(1);
 
@@ -110,12 +114,12 @@ public class LibraryTest {
 
     @Test
     public void givenAnUnavailableBookWhenCheckoutTheBookThenShowUnsuccessfulMessage(){
-        Library library = new Library();
         int codeBook = library.getBookList().get(30).getCode();
         library.getBookList().get(30).setStatus(1);
         String messageCheckedoutUnavailableBook = "Sorry, that book is not available";
+        User user = library.getUserList().get(0);
 
-        String resultMessageCheckedoutUnavailableBook = library.checkoutBook(codeBook);
+        String resultMessageCheckedoutUnavailableBook = library.checkoutBook(codeBook, user);
 
         assertThat(messageCheckedoutUnavailableBook, is(resultMessageCheckedoutUnavailableBook));
     }
@@ -123,7 +127,6 @@ public class LibraryTest {
 
     @Test
     public void givenAValidBookWhenReturnTheBookThenShowSuccessfulMessage(){
-        Library library = new Library();
         library.getBookList().get(30).setStatus(1);
         int codeBook = library.getBookList().get(30).getCode();
         String messageReturnBookSuccessfully = "Thank you for returning the book";
@@ -136,7 +139,6 @@ public class LibraryTest {
 
     @Test
     public void givenAnInvalidBookWhenReturnTheBookThenShowSuccessfulMessage(){
-        Library library = new Library();
         int codeBookForReturning = 90;
         String messageReturnBookSuccessfully = "That is not a valid book to return";
 
@@ -148,11 +150,11 @@ public class LibraryTest {
 
     @Test
     public void givenBookDoNotBelongToLibraryWhenReturnTheBookThenShowSuccessfulMessage(){
-        Library library = new Library();
         int codBook = 68;
         String expectedMessageOptionCheckoutBook = "That is not a valid book to check out";
+        User user = library.getUserList().get(0);
 
-        String resultMessageCheckedoutBook = library.checkoutBook(codBook);
+        String resultMessageCheckedoutBook = library.checkoutBook(codBook, user);
 
         assertThat(expectedMessageOptionCheckoutBook, is(resultMessageCheckedoutBook));
     }
@@ -160,7 +162,6 @@ public class LibraryTest {
 
     @Test
     public void whenOpenAppThenCreateAMovieList(){
-        Library library = new Library();
         int sizeMovieList = 4;
 
         int resultSizeMovieList = library.getMovieList().size();
@@ -186,7 +187,6 @@ public class LibraryTest {
         int codeMovie2 = 400;
         Movie movie2 = new Movie(nameMovie2, yearMovie2, directorMovie2, ratingMovie2, statusMovie2, codeMovie2);
         List<Movie> bookList = new ArrayList<>(Arrays.asList(movie1, movie2));
-        Library library = new Library();
         library.getMovieList().get(500).setStatus(1);
         library.getMovieList().get(600).setStatus(1);
 
@@ -198,7 +198,6 @@ public class LibraryTest {
 
     @Test
     public void givenAVailableMovieWhenCheckoutTheMovieThenShowSuccessfulMessage(){
-        Library library = new Library();
         int codeMovie = 300;
         String messageCheckedoutBook = "Thank you! Enjoy the movie";
 
@@ -210,7 +209,6 @@ public class LibraryTest {
 
     @Test
     public void givenAnUnavailableMovieWhenCheckoutTheMovieThenShowUnsuccessfulMessage(){
-        Library library = new Library();
         int codeMovie = library.getMovieList().get(300).getCode();
         library.getMovieList().get(300).setStatus(1);
         String messageCheckedoutUnavailableMovie= "Sorry, that movie is not available";
@@ -223,7 +221,6 @@ public class LibraryTest {
 
     @Test
     public void givenMovieDoNotBelongToLibraryWhenCheckoutTheMovieTheShowUnsuccessfulMessage(){
-        Library library = new Library();
         int codeMovie = 990;
         String messageCheckedoutUnavailableMovie= "That is not a valid movie to check out";
 
@@ -235,7 +232,6 @@ public class LibraryTest {
 
     @Test
     public void whenAppStartsThenCreateADefaultUserList(){
-        Library library = new Library();
         int expectedSizeList = 2;
 
         int sizeList = library.getUserList().size();
@@ -244,5 +240,29 @@ public class LibraryTest {
     }
 
 
+    @Test
+    public void givenAnAvailableBookWhenSendValidBookCodeAndValidUserThenCheckoutTheBook(){
+        int bookCode = library.getBookList().get(30).getCode();
+        User user = library.getUserList().get(0);
+        String messageCheckedoutBook = "Thank you! Enjoy the book";
+
+        String resultMessageCheckedoutBook = library.checkoutBook(bookCode, user);
+
+        assertThat(messageCheckedoutBook, is(resultMessageCheckedoutBook));
+    }
+
+
+
+    //////2 funciones
+    @Test
+    public void givenAnAvailableBookWhenCheckoutTheBookThenAssocciateBookWithCustomer(){
+        library.getBookList().get(30).setStatus(0);
+        int codeBook = library.getBookList().get(30).getCode();
+        User user = library.getUserList().get(0);
+
+        library.checkoutBook(codeBook, user);
+
+        assertThat(user.getUsername(), is(library.queryWhoHasTheBook(codeBook)));
+    }
 
 }

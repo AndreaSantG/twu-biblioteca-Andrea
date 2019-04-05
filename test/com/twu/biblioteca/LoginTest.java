@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.LogApp;
+import com.twu.biblioteca.model.User;
 import org.junit.Test;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -14,26 +16,24 @@ public class LoginTest {
     public void whenLoginWithCorrectUsernameAndPasswordThenShowsSuccessfulMessage(){
         LogApp logApp = new LogApp();
         Library library = new Library();
-        String username = "use-1234";
+        String username = "000-1234";
         String password = "pass1";
-        String expectedResultMessage = "Success";
 
-        String resultMessage = logApp.login(library.getUserList(), username, password);
+        User resultUser = logApp.login(library.getUserList(), username, password);
 
-        assertThat(expectedResultMessage, is(resultMessage));
+        assertThat(resultUser instanceof User, is(true));
     }
 
 
     @Test
-    public void whenLoginWithInCorrectUsernameThenShowsUnsuccessfulMessage(){
+    public void whenLoginWithIncorrectUsernameThenReturnNull(){
         LogApp logApp = new LogApp();
         Library library = new Library();
         String username = "use-123";
         String password = "pass1";
-        String expectedResultMessage = "Your username or password is incorrect";
 
-        String resultMessage = logApp.login(library.getUserList(), username, password);
+        User resultUser = logApp.login(library.getUserList(), username, password);
 
-        assertThat(expectedResultMessage, is(resultMessage));
+        assertThat(null, is(resultUser));
     }
 }
