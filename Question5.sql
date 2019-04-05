@@ -1,0 +1,1 @@
+select member_id, count(*) from checkout_item group by member_id having count(*) > 1;
