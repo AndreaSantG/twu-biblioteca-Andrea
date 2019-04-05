@@ -4,9 +4,11 @@ import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -228,6 +230,17 @@ public class LibraryTest {
         String resultMessageCheckedoutUnavailableMovie = library.checkoutMovie(codeMovie);
 
         assertThat(messageCheckedoutUnavailableMovie, is(resultMessageCheckedoutUnavailableMovie));
+    }
+
+
+    @Test
+    public void whenAppStartsThenCreateADefaultUserList(){
+        Library library = new Library();
+        int expectedSizeList = 2;
+
+        int sizeList = library.getUserList().size();
+
+        assertThat(expectedSizeList, is(sizeList));
     }
 
 

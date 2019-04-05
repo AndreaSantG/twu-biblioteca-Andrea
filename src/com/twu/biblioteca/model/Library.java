@@ -6,6 +6,7 @@ public class Library {
 
     private Map<Integer, Book> bookHashMap;
     private Map<Integer, Movie> movieHashMap;
+    private List<User>  userList;
 
     public Library(){
         bookHashMap = new LinkedHashMap<>();
@@ -27,6 +28,13 @@ public class Library {
         movieHashMap.put(400, movie2);
         movieHashMap.put(500, movie3);
         movieHashMap.put(600, movie4);
+
+        userList = new ArrayList<>();
+        User user1 = new User("use-1234","pass1");
+        User user2 = new User("use-5678","pass2");
+        userList.add(user1);
+        userList.add(user2);
+
     }
 
     public Map<Integer, Book> getBookList() {
@@ -108,5 +116,9 @@ public class Library {
         }
 
         return "That is not a valid movie to check out";
+    }
+
+    public List<User> getUserList() {
+        return this.userList;
     }
 }
