@@ -5,6 +5,7 @@ import java.util.*;
 public class Library {
 
     private Map<Integer, Book> bookHashMap;
+    private Map<Integer, Movie> movieHashMap;
 
     public Library(){
         bookHashMap = new LinkedHashMap<>();
@@ -16,10 +17,24 @@ public class Library {
         bookHashMap.put(40, book2);
         bookHashMap.put(50, book3);
         bookHashMap.put(60, book4);
+
+        movieHashMap = new LinkedHashMap<>();
+        Movie movie1 = new Movie("Titanic", 1997, "James Cameron", 9, 0, 300);
+        Movie movie2 = new Movie("El Rey Leon", 1994, "Rob Minkoff, Roger Allers", 10, 0, 400);
+        Movie movie3 = new Movie("Avatar", 2009, "James Cameron", 0, 0, 500);
+        Movie movie4 = new Movie("The night knight", 2008, "Christopher Nolan", 8, 0, 600);
+        movieHashMap.put(300, movie1);
+        movieHashMap.put(400, movie2);
+        movieHashMap.put(500, movie3);
+        movieHashMap.put(600, movie4);
     }
 
     public Map<Integer, Book> getBookList() {
         return this.bookHashMap;
+    }
+
+    public Map<Integer, Movie> getMovieList() {
+        return this.movieHashMap;
     }
 
     public String showWelcomeMessage() {
@@ -64,5 +79,34 @@ public class Library {
             }
         }
         return "That is not a valid book to return";
+    }
+
+
+    public String displayMovieList() {
+        String displayAllMovie = "";
+        for(Movie movie : movieHashMap.values()){
+            if(movie.getStatus() == 0){
+                displayAllMovie += formatMovieList(movie);
+            }
+        }
+        return displayAllMovie;
+    }
+
+
+    private String formatMovieList(Movie movie){
+        return movie.getName()+"|"+movie.getYearMovie()+"|"+movie.getDirector()+"|"+movie.getRating()+"\n";
+    }
+
+
+    public String checkoutMovie(int codeMovie) {
+        for(Movie movie : movieHashMap.values()){
+            if(movie.getCode() == codeMovie && movie.getStatus() == 0){
+                movie.setStatus(1);
+                return "Thank you! Enjoy the movie";
+            } else if(movie.getCode() == codeMovie && movie.getStatus() != 0){
+                return "Sorry, that movie is not available"; }
+        }
+
+        return "That is not a valid movie to check out";
     }
 }
