@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Utilitarian {
 
-    public static void print(String text){
+    public void print(String text){
         System.out.println(text);
     }
 
-    public static String read(){
+    public String read(){
         Scanner reader = new Scanner ( System.in );
         return reader.next();
     }

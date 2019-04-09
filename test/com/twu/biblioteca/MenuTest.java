@@ -6,9 +6,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class MenuTest {
 
@@ -16,7 +17,7 @@ public class MenuTest {
     @Test
     public void givenAppStartsWhenWelcomeMessageShowThenShouldDisplayMenu(){
         Menu menu = new Menu();
-        String menuOptions = "(1) List books\n(2) Checkout a book\n(3) Return a book\n(4) List movies\n(5) View my information\n(0) Quit\n";
+        String menuOptions = "(1) List books\n(2) Checkout a book\n(3) Return a book\n(4) List movies\n(5) Checkout a movie\n(6) View my information\n(0) Quit\n";
 
         String resultMenu = menu.showMenu();
 
@@ -78,35 +79,41 @@ public class MenuTest {
     }
 
 
-    /*@Test
+    @Test
     public void givenMenuIsShownWhenSelectOptionTwoThenCallCheckoutBookOption(){
         Library library = new Library();
         Menu menu = new Menu();
         library.getBookList().get(30).setStatus(0);
-        int codeBook = library.getBookList().get(30).getCode();
+        String codeBook = String.valueOf(library.getBookList().get(30).getCode());
         int menuOption = 2;
-        String expectedMessage = "Checkout a Book";
+        String expectedMessage = "Thank you! Enjoy the book";
+        Utilitarian utilitarian = mock(Utilitarian.class);
+        when(utilitarian.read()).thenReturn(codeBook);
+        menu.setUtilitarian(utilitarian);
 
-        String resultCheckoutABook = menu.selectOption(menuOption, library);
+        String resultCheckoutABook = menu.selectOption(menuOption, library, library.getUserList().get(0));
 
         assertThat(expectedMessage, is(resultCheckoutABook));
-    }*/
+    }
 
 
 
-    /*@Test
+    @Test
     public void givenMenuIsShownWhenSelectOptionThreeThenCallReturnBookOption(){
         Library library = new Library();
         Menu menu = new Menu();
-        library.getBookList().get(30).setStatus(0);
-        int codeBook = library.getBookList().get(30).getCode();
+        library.getBookList().get(30).setStatus(1);
+        String codeBook = String.valueOf(library.getBookList().get(30).getCode());
         int menuOption = 3;
-        String expectedMessage = "Return a Book";
+        String expectedMessage = "Thank you for returning the book";
+        Utilitarian utilitarian = mock(Utilitarian.class);
+        when(utilitarian.read()).thenReturn(codeBook);
+        menu.setUtilitarian(utilitarian);
 
-        String resultCheckoutABook = menu.selectOption(menuOption, library);
+        String resultCheckoutABook = menu.selectOption(menuOption, library, library.getUserList().get(0));
 
         assertThat(expectedMessage, is(resultCheckoutABook));
-    }*/
+    }
 
 
 
@@ -146,19 +153,22 @@ public class MenuTest {
     }
 
 
-    /*@Test
-    public void givenMenuIsShownWhenSelectOptionFiveThenCallCheckoutBookOption(){
+    @Test
+    public void givenMenuIsShownWhenSelectOptionFiveThenCallCheckoutMovieOption(){
         Library library = new Library();
         Menu menu = new Menu();
         library.getMovieList().get(300).setStatus(0);
-        int codeMovie = library.getMovieList().get(300).getCode();
+        String codeMovie = String.valueOf(library.getMovieList().get(300).getCode());
         int menuOption = 5;
-        String expectedMessage = "Checkout a Movie";
+        String expectedMessage = "Thank you! Enjoy the movie";
+        Utilitarian utilitarian = mock(Utilitarian.class);
+        when(utilitarian.read()).thenReturn(codeMovie);
+        menu.setUtilitarian(utilitarian);
 
-        String resultCheckoutABook = menu.selectOption(menuOption, library);
+        String resultCheckoutABook = menu.selectOption(menuOption, library, library.getUserList().get(0));
 
         assertThat(expectedMessage, is(resultCheckoutABook));
-    }*/
+    }
 
 
     @Test
@@ -175,6 +185,9 @@ public class MenuTest {
 
         assertThat("Your contact information is: "+name +"|"+mail+"|"+phoneNumber, is(resultUserContactInformation));
     }
+
+
+
 
 
 }

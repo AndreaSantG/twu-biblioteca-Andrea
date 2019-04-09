@@ -9,6 +9,7 @@ public class Menu {
     private String menuFive;
     private String menuSix;
     private String menuZero;
+    private Utilitarian utilitarian;
 
     public Menu(){
         this.menuOne = "(1) List books\n";
@@ -18,6 +19,7 @@ public class Menu {
         this.menuFive = "(5) Checkout a movie\n";
         this.menuSix = "(6) View my information\n";
         this.menuZero = "(0) Quit\n";
+        utilitarian = new Utilitarian();
     }
 
     public String showMenu() {
@@ -35,20 +37,21 @@ public class Menu {
                 break;
             case 2:
                 selectedOption = "Checkout a Book";
-                Utilitarian.print("Please enter the code of book you want to check out");
-                codeBook = Integer.valueOf(Utilitarian.read());
+                utilitarian.print("Please enter the code of book you want to check out");
+                codeBook = Integer.valueOf(utilitarian.read());
                 selectedOption = library.checkoutBook(codeBook, user);
                 break;
             case 3:
-                Utilitarian.print("Please enter the code of book you want to return");
-                codeBook = Integer.valueOf(Utilitarian.read());
+                utilitarian.print("Please enter the code of book you want to return");
+                codeBook = Integer.valueOf(utilitarian.read());
                 selectedOption = library.returnBook(codeBook);
+                break;
             case 4:
                 selectedOption = library.displayMovieList();
                 break;
             case 5:
-                Utilitarian.print("Please enter the code of movie you want to check out");
-                codeMovie = Integer.valueOf(Utilitarian.read());
+                utilitarian.print("Please enter the code of movie you want to check out");
+                codeMovie = Integer.valueOf(utilitarian.read());
                 selectedOption = library.checkoutMovie(codeMovie);
                 break;
             case 6:
@@ -62,5 +65,9 @@ public class Menu {
                 selectedOption = "Please select a valid option!";
         }
         return selectedOption;
+    }
+
+    public void setUtilitarian(Utilitarian utilitarian) {
+        this.utilitarian = utilitarian;
     }
 }

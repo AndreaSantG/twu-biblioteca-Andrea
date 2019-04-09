@@ -7,8 +7,7 @@ public class LogApp {
     public User login(List<User> userList, String username, String password) {
         for (User user: userList) {
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-                return user;
-            }
+                return user; }
         }
         return null;
     }
